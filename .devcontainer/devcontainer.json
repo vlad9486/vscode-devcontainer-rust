@@ -1,0 +1,35 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            // use the `stat` command on the machine where docker engine running (remote)
+            // to determine uid and gid
+            "USERNAME": "vladislav",  // stat -c '%U' ~
+            "USER_UID": "1000",  // stat -c '%g' ~
+            "DOCKER_SOCK_GID": "131",  // stat -c '%g' /var/run/docker.sock
+            "DOCKERVERSION": "20.10.0",
+            "DOCKERCOMPOSEVERSION": "1.27.4",
+            "RUSTVERSION": "nightly-2020-10-24"
+        }
+    },
+    // make workspace persistent
+    "workspaceFolder": "/home/vladislav/workspace",
+    "workspaceMount": "source=remote-workspace,target=/home/vladislav/workspace,type=volume",
+    "mounts": [
+        // keep fish history
+        "source=fish,target=/home/vladislav/.local/share/fish,type=volume",
+        // expected gnupg on the remote
+        "source=/home/vladislav/.gnupg/S.gpg-agent.vscode,target=/home/vladislav/.gnupg/S.gpg-agent,type=bind",
+        // expected docker on the remote
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ],
+    "extensions": [
+        "vadimcn.vscode-lldb",
+        "matklad.rust-analyzer", // replace with "rust-lang.rust", if you prefer
+        "serayuzgur.crates",
+        "streetsidesoftware.code-spell-checker",
+        "tamasfe.even-better-toml"
+    ],
+    "forwardPorts": [
+    ]
+}
