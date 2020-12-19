@@ -53,6 +53,10 @@ ENV LLVM_SYS_110_PREFIX=/usr/lib/llvm-11
 
 RUN sudo apt install -y \
     # some build and run deps
-    libclang-dev make clang pkg-config libsodium-dev zlib1g-dev \
+    libclang-dev make clang gcc pkg-config libsodium-dev zlib1g-dev libev-dev \
     # kernel build deps
-    libarchive-tools flex bison libssl-dev bc libelf-dev
+    libarchive-tools flex bison libssl-dev bc libelf-dev \
+    #
+    lsof net-tools strace moreutils ncdu
+
+RUN ~/.cargo/bin/cargo install cargo-with

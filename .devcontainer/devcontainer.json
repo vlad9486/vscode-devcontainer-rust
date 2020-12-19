@@ -12,14 +12,13 @@
             "RUSTVERSION": "nightly-2020-10-24"
         }
     },
+    "runArgs": [ "--privileged" ],
     // make workspace persistent
     "workspaceFolder": "/home/vscode/workspace",
     "workspaceMount": "source=remote-workspace,target=/home/vscode/workspace,type=volume",
     "mounts": [
         // keep fish history
         "source=fish,target=/home/vscode/.local/share/fish,type=volume",
-        // expected gnupg on the remote, replace the path with your actual path
-        "source=/home/vladislav/.gnupg/S.gpg-agent.vscode,target=/home/vscode/.gnupg/S.gpg-agent,type=bind",
         // expected docker on the remote
         "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
     ],
@@ -28,7 +27,9 @@
         "matklad.rust-analyzer", // replace with "rust-lang.rust", if you prefer
         "serayuzgur.crates",
         "streetsidesoftware.code-spell-checker",
-        "tamasfe.even-better-toml"
+        "tamasfe.even-better-toml",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode.cpptools"
     ],
     "forwardPorts": [
     ]
