@@ -9,7 +9,7 @@
             "DOCKER_SOCK_GID": "131",  // stat -c '%g' /var/run/docker.sock
             "DOCKERVERSION": "20.10.0",
             "DOCKERCOMPOSEVERSION": "1.27.4",
-            "RUSTVERSION": "nightly-2020-10-24"
+            "RUSTVERSION": "nightly-2020-12-30"
         }
     },
     "runArgs": [ "--privileged" ],
@@ -20,7 +20,9 @@
         // keep fish history
         "source=fish,target=/home/vscode/.local/share/fish,type=volume",
         // expected docker on the remote
-        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+        // debug fs for bpf
+        "source=/sys/kernel/debug,target=/sys/kernel/debug,type=bind"
     ],
     "extensions": [
         "vadimcn.vscode-lldb",
